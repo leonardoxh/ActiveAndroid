@@ -44,10 +44,6 @@ public final class ActiveAndroid {
 		Cache.initialize(configuration);
 	}
 
-	public static void clearCache() {
-		Cache.clear();
-	}
-
 	public static void dispose() {
 		Cache.dispose();
 	}

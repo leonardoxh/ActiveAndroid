@@ -320,7 +320,6 @@ public final class SQLiteUtils {
     @SuppressWarnings("unchecked")
     public static <T extends Model> List<T> processCursor(Class<? extends Model> type, Cursor cursor) {
         TableInfo tableInfo = Cache.getTableInfo(type);
-        String idName = tableInfo.getIdName();
         final List<T> entities = new ArrayList<T>();
 
         try {
@@ -331,12 +330,8 @@ public final class SQLiteUtils {
                  * Obtain the columns ordered to fix issue #106 (https://github.com/pardom/ActiveAndroid/issues/106)
                  * when the cursor have multiple columns with same name obtained from join tables.
                  */
-                List<String> columnsOrdered = new ArrayList<String>(Arrays.asList(cursor.getColumnNames()));
                 do {
-                    Model entity = Cache.getEntity(type, cursor.getLong(columnsOrdered.indexOf(idName)));
-                    if (entity == null) {
-                        entity = (T) entityConstructor.newInstance();
-                    }
+                    Model entity = (T) entityConstructor.newInstance();
 
                     entity.loadFromCursor(cursor);
                     entities.add((T) entity);
