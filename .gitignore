@@ -1,39 +1,43 @@
-#Android generated
+# Custom
+_site
+ 
+# Ant
+MANIFEST.MF
+./*.jar
+build.num
+build
+ 
+# ADT
+.classpath
+.project
+.settings
+local.properties
 bin
 gen
-lint.xml
-
-#Eclipse
-.project
-.classpath
-.settings
-.checkstyle
-
-#IntelliJ IDEA
-.idea
+_layouts
+proguard.cfg
+ 
+# OSX
+.DS_Store
+ 
+# Github
+gh-pages
+ 
+# Gradle
+.gradle
+build
+ 
+# IDEA
 *.iml
 *.ipr
 *.iws
-classes
-gen-external-apklibs
-
-#Maven
+out
+.idea
+ 
+# Maven
 target
 release.properties
 pom.xml.*
-
-#Ant
-ant.properties
-local.properties
-proguard.cfg
-proguard-project.txt
-
-#Other
-.DS_Store
-dist/
-tmp
-
-# Gradle
-.gradle
-/build
-/out
+ 
+#Android studio tools
+captures/
