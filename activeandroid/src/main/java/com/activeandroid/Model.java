@@ -61,7 +61,7 @@ public abstract class Model {
     // PUBLIC METHODS
     //////////////////////////////////////////////////////////////////////////////////////
 
-    public final void setId(Long id) {
+    public final void setInternalId(Long id) {
         this.mId = id;
     }
 
