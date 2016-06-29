@@ -61,6 +61,10 @@ public abstract class Model {
     // PUBLIC METHODS
     //////////////////////////////////////////////////////////////////////////////////////
 
+    public final void setId(Long id) {
+        this.mId = id;
+    }
+
     public final Long getId() {
         return mId;
     }
