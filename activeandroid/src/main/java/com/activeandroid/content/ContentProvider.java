@@ -99,15 +99,11 @@ public class ContentProvider extends android.content.ContentProvider {
         final Long id = Cache.openDatabase().insert(Cache.getTableName(type), null, values);
 
         System.out.println("INSERTED ID = " + id);
-        if (id > 0) {
-            Uri retUri = createUri(type, id);
-            System.out.println("RETRIVED URI = " + retUri.toString());
-            notifyChange(retUri);
+        Uri retUri = createUri(type, id);
+        System.out.println("RETRIVED URI = " + retUri.toString());
+        notifyChange(retUri);
 
-            return retUri;
-        }
-
-        return null;
+        return retUri;
     }
 
     @Override
@@ -158,7 +154,7 @@ public class ContentProvider extends android.content.ContentProvider {
         uri.append("/");
         uri.append(Cache.getTableName(type));
 
-        if (id != null) {
+        if (id != null && id > 0) {
             uri.append("/");
             uri.append(id.toString());
         }
