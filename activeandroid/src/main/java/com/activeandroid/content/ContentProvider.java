@@ -47,11 +47,11 @@ public class ContentProvider extends android.content.ContentProvider {
             final int itemKey = (i * 2) + 2;
 
             // content://<authority>/<table>
-            URI_MATCHER.addURI(sAuthority, tableInfo.getTableName().toLowerCase(), tableKey);
+            URI_MATCHER.addURI(sAuthority, tableInfo.getTableName(), tableKey);
             TYPE_CODES.put(tableKey, tableInfo.getType());
 
             // content://<authority>/<table>/<id>
-            URI_MATCHER.addURI(sAuthority, tableInfo.getTableName().toLowerCase() + "/#", itemKey);
+            URI_MATCHER.addURI(sAuthority, tableInfo.getTableName() + "/#", itemKey);
             TYPE_CODES.put(itemKey, tableInfo.getType());
         }
 
@@ -95,14 +95,10 @@ public class ContentProvider extends android.content.ContentProvider {
         final Class<? extends Model> type = getModelType(uri);
         final Long id = Cache.openDatabase().insert(Cache.getTableName(type), null, values);
 
-        if (id != null && id > 0) {
-            Uri retUri = createUri(type, id);
-            notifyChange(retUri);
+        Uri retUri = createUri(type, id);
+        notifyChange(retUri);
 
-            return retUri;
-        }
-
-        return null;
+        return retUri;
     }
 
     @Override
@@ -151,9 +147,9 @@ public class ContentProvider extends android.content.ContentProvider {
         uri.append("content://");
         uri.append(sAuthority);
         uri.append("/");
-        uri.append(Cache.getTableName(type).toLowerCase());
+        uri.append(Cache.getTableName(type));
 
-        if (id != null) {
+        if (id != null && id > 0) {
             uri.append("/");
             uri.append(id.toString());
         }
