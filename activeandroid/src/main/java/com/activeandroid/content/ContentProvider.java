@@ -93,7 +93,9 @@ public class ContentProvider extends android.content.ContentProvider {
     @Override
     public Uri insert(Uri uri, ContentValues values) {
         final Class<? extends Model> type = getModelType(uri);
-        System.out.println("CONTENT_VALUE = " + values);
+        System.out.println("URI = " + uri.toString());
+        System.out.println("TABLE = " + type);
+        System.out.println("CONTENT_VALUE = " + values.toString());
         final Long id = Cache.openDatabase().insert(Cache.getTableName(type), null, values);
 
         System.out.println("INSERTED ID = " + id);
