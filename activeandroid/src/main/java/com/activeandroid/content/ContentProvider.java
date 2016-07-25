@@ -47,11 +47,11 @@ public class ContentProvider extends android.content.ContentProvider {
             final int itemKey = (i * 2) + 2;
 
             // content://<authority>/<table>
-            URI_MATCHER.addURI(sAuthority, tableInfo.getTableName().toLowerCase(), tableKey);
+            URI_MATCHER.addURI(sAuthority, tableInfo.getTableName(), tableKey);
             TYPE_CODES.put(tableKey, tableInfo.getType());
 
             // content://<authority>/<table>/<id>
-            URI_MATCHER.addURI(sAuthority, tableInfo.getTableName().toLowerCase() + "/#", itemKey);
+            URI_MATCHER.addURI(sAuthority, tableInfo.getTableName() + "/#", itemKey);
             TYPE_CODES.put(itemKey, tableInfo.getType());
         }
 
@@ -151,7 +151,7 @@ public class ContentProvider extends android.content.ContentProvider {
         uri.append("content://");
         uri.append(sAuthority);
         uri.append("/");
-        uri.append(Cache.getTableName(type).toLowerCase());
+        uri.append(Cache.getTableName(type));
 
         if (id != null) {
             uri.append("/");
